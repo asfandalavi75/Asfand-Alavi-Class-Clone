@@ -32,7 +32,7 @@ app
 })
 
 .get('/newpaltz', (req, res) => {
-  res.send('Hello New Paltz!')
+  res.send('Hello New Platz!')
 })
 
 app.listen(port, () => {
