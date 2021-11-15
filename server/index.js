@@ -1,39 +1,29 @@
-// const { write } = require('fs');
-// const http = require('http'); //try to use constants, not variables (where ever possible). try 'let' first for a smaller scale variable, then 'var'
-// //ctrl+c in terminal to stop server running.
-// const hostname = '127.0.0.1'; // '127.0.0.1' is a loopback IP address.
-// const port = 3000;
+const express = require('express');
+const path = require('path');
+require('dotenv').config();
 
-// const server = http.createServer((req, res) => {
-//   res.statusCode = 200;
-//   res.setHeader('Content-Type', 'text/plain');
-// //  res.write("Going");
-// //  for(let index =0; index < 30; index++)
-// //  {
-// //    res.write(".");
-// //    var waitTill = new Date(new Date().getTime()+);
-// //  }
-// });
+console.log(`The best class at New Paltz is ${process.env.BEST_CLASS}`);
 
-// server.listen(port, hostname, () => {
-//   console.log(`Server running at http://${hostname}:${port}/`);
-// });
+const usersController = require('./controllers/users');
+const postsController = require('./controllers/posts');
 
-
-/////------------------------------------------EXPRESS
-
-const express = require('express')
 const app = express()
-const port = 3000
+const port = process.env.PORT || 3000;
 
 app
-.get('/', (req, res) => {
-  res.send('Hello World!')
-})
+    .use('/', express.static(path.join(__dirname, '../docs')) )
 
-.get('/newpaltz', (req, res) => {
-  res.send('Hello New Platz!')
-})
+    .use(express.json())
+    .use('/users', usersController )
+    .use('/posts', postsController)
+
+app
+    .get('*', (req, res) => res.sendFile(path.join(__dirname, '../docs/index.html')) )
+
+app
+    .use((err, req, res, next)=>{
+        res.status(err.code || 500).send(err);
+    })
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)

@@ -1,30 +1,24 @@
 {
-  "name": "asfand-alavi-class-clone",
+  "name": "2021fall",
   "version": "1.0.0",
-  "description": "class clone ",
-  "main": "index.js",
-  "directories": {
-    "doc": "docs"
-  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon --watch server  server/index"
+    "dev": "nodemon --watch server server/index",
+    "start": "node server/index"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/asfandalavi75/Asfand-Alavi-Class-Clone.git"
+    "url": "git+https://github.com/jewpaltz/2021Fall.git"
   },
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/asfandalavi75/Asfand-Alavi-Class-Clone/issues"
-  },
-  "homepage": "https://github.com/asfandalavi75/Asfand-Alavi-Class-Clone#readme",
   "dependencies": {
-    "express": "^4.17.1",
+    "express": "4.17.1",
+    "bcrypt": "^5.0.1",
+    "dotenv": "^10.0.0",
     "lodash": "^4.17.21"
   },
   "devDependencies": {
-    "nodemon": "^2.0.13"
+    "nodemon": "^2.0.12"
   }
 }
